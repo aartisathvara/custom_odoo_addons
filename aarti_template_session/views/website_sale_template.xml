@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="add_date" inherit_id="website_sale.product"  name="Add Date">
+        <xpath expr="//a[@id='add_to_cart']" position="after">
+            <p>Date:<span t-esc="datetime.datetime.now().strftime('%d/%m/%Y')"/></p>
+        </xpath>
+    </template>
+</odoo>

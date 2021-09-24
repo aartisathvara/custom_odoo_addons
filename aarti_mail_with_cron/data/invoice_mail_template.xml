@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="invoice_email_template" model="mail.template">
+            <field name="name">Invoice Mail Template</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="subject">Invoice</field>
+            <field name="email_from">${(object.invoice_user_id.email_formatted or user.email_formatted) | safe}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <b>Hello,</b>
+                        <p><b>Invoice Number:</b>${object.name}
+                        </p>
+                        <p><b>Today Date:</b>${datetime.date.today()}
+                        </p>
+                        <p>
+                            <b>Partner:</b>
+                            % if object.partner_id.parent_id:
+                            ${object.partner_id.name} (${object.partner_id.parent_id.name}),
+                            % else:
+                            ${object.partner_id.name}
+                            % endif
+                        </p>
+                        <p><b>Due Date:</b>${object.invoice_payment_term_id.name}
+                        </p>
+                        <p><b>Amount Total:</b>${format_amount(object.amount_total, object.currency_id)}
+                        </p>
+                        <p>
+                            <b>Products:</b>
+                        </p>
+                        % for product in object.invoice_line_ids:
+                        <li>${product.name}</li>
+                        % endfor
+                        <b>Thank You</b>
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

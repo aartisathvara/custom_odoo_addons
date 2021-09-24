@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add action create sale order in the Action Menu for Partners -->
+    <record id="res_partner_act_window_sale_order" model="ir.actions.act_window">
+        <field name="name">Create Sale Order</field>
+        <field name="res_model">create.sale.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_view_types">list</field>
+    </record>
+    <record id="res_partner_act_window_sale_order_single" model="ir.actions.act_window">
+        <field name="name">Create Sale Order</field>
+        <field name="res_model">create.sale.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_view_types">form</field>
+    </record>
+</odoo>

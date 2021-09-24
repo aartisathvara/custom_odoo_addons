@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="teacher_tree_view" model="ir.ui.view">
+      <field name="name">teacher.tree.view</field>
+      <field name="model">teacher.teacher</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" string="Teacher Name"/>
+          <field name="language" string="School Name"/>
+        </tree>
+      </field>
+    </record>
+
+    <record  id="teacher_form_view" model="ir.ui.view">
+      <field name="name">teacher.form.view</field>
+      <field name="model">teacher.teacher</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name" string="Teacher Name"/>
+              <field name="language" string="Language"/>
+              <field name="student_id"/>
+              <!-- <field name="res_partners_ids" widget="many2many_tags" options="{'color_field': 'color'}" help="please select atleast one student" /> -->
+              <!-- <field name="age"/> -->
+
+             <!--  <field name="res_partners_ids" widget="many2many_kanban"> -->
+
+            </group>
+          </sheet>
+           <div class="oe_chatter">
+              <field name="message_follower_ids"/>
+              <field name="activity_ids"/>
+              <field name="message_ids"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <record id="teacher_action" model="ir.actions.act_window">
+        <field name="name">teacher.action</field>
+        <field name="res_model">teacher.teacher</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="school_nav" name="School Teacher" parent="school_root" action="teacher_action"/>
+
+</odoo>

@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+    <!-- Sale order form view-->
+    <record id="view_sale_order_inherit" model="ir.ui.view">
+        <field name="name">sale.order.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="custom_partner_ids" widget="many2many_tags"/>
+                <field name="custom_product_id" widget="many2one"/>
+            </field>
+
+            <xpath expr="//button[@name='action_quotation_send']" position="after">
+                 <button name="update_many2many" string="Update Many2many" type="object" class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+
+  </data>
+</odoo>

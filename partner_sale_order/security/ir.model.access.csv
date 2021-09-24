@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_create_sale_order_wizard,create.sale.order.wizard,model_create_sale_order_wizard,,1,1,1,1
+access_order_line,order.line,model_order_line,,1,1,1,1

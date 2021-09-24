@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.school</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="School" string="School" data-key="school">
+                    <h2>School Management</h2>
+                    <div class="row mt16 o_settings_container" name="school_setting_container">
+                        <div class="col-12 col-lg-6 o_setting_box" id="school_configurator">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sale_management"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sale_management"/>
+                                <div class="text-muted">
+                                    Install Sales Module
+                                </div>
+                            </div>
+                        </div>
+<!--                        <div class="col-12 col-lg-6 o_setting_box" id="invoice_delivery_addresses">-->
+<!--                            <div class="o_setting_left_pane">-->
+<!--                                <field name="group_sale_delivery_address"/>-->
+<!--                            </div>-->
+<!--                            <div class="o_setting_right_pane">-->
+<!--                                <label for="group_sale_delivery_address"/>-->
+<!--                                <div class="text-muted">-->
+<!--                                    Select specific invoice and delivery addresses-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+                         <div class="col-12 col-lg-6 o_setting_box" id="invoice_delivery_addresses">
+                            <div class="o_setting_left_pane">
+                                <field name="teacher_active"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="teacher_active"/>
+                                <div class="text-muted">
+                                    Teacher Active
+                                </div>
+                                <label for="teacher_active_name"/>
+                                <field name="teacher_active_name"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" id="invoice_delivery_addresses">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="primary_school"/>
+
+                                <div class="text-muted">
+                                    Primary School
+                                </div>
+                                <field name="primary_school"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" id="invoice_delivery_addresses">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="partner_ids"/>
+                                <div class="text-muted">
+                                    The customers from sale orders which are created in this month blow list.
+                                </div>
+                                <field name="partner_ids" widget="many2many_tags" options="{'no_create_edit': True,'no_create':True}" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_school_config_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="res_config_settings_view_form"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+<!--        <field name="context">{'module' : 'school'}</field>-->
+    </record>
+
+    <menuitem id="menu_school_configuration"
+        name="Configuration"
+        parent="school_root"
+    />
+
+    <menuitem id="menu_school_settings"
+        name="Settings"
+        parent="menu_school_configuration"
+        sequence="0"
+        action="action_school_config_settings"
+    />
+
+</odoo>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//th[@name='th_description']" position="after">
+            <th>Tracking</th>
+        </xpath>
+        <xpath expr="//td[@name='td_name']" position="after">
+            <t t-if="line.product_id.type == 'product'">
+                <td>
+                    <span t-field="line.product_id.tracking" />
+                </td>
+            </t>
+            <t t-else="">
+                <td></td>
+            </t>
+        </xpath>
+        <!--Add Delivery order table -->
+        <xpath expr="//p[@id='fiscal_position_remark']" position="after">
+            <table class="table table-sm">
+                <t t-if="doc.procurement_group_id">
+                    <thead>
+                        <th>Delivery</th>
+                        <th>State</th>
+                    </thead>
+                </t>
+                <t t-foreach="delivery_orders_list" t-as="deliveries">
+                    <t t-if="doc.procurement_group_id">
+                        <t t-if="doc.procurement_group_id == deliveries.group_id">
+                            <t t-foreach="deliveries" t-as="delivery">
+                                <tr>
+                                    <td>
+                                        <span t-esc="delivery.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="delivery.state"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </t>
+                </t>
+            </table>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,58 @@
+<odoo>
+    <template id="partner_page" name="Partners">
+        <t t-call="website.layout">
+            <t t-set="title">Partners</t>
+            <div class="oe_structure">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+<!--                            <div class="table-responsive">-->
+                            <table id="partners_list" class="table table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="partners" t-as="partner">
+                                    <td>
+                                        <div class="img-fluid">
+                                            <t  t-esc="partner.image_1920" t-options='{"widget": "image"}'/>
+                                        </div>
+                                    </td>
+                                    <td><t t-esc="partner.name"/></td>
+                                    <td><t t-esc="partner.email"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+<!--                            </div>-->
+                        </div>
+<!--                        <div class="col-6">-->
+<!--                            <table id="partners_list" class="table table-hover">-->
+<!--                        <thead class="thead-dark">-->
+<!--                            <tr>-->
+<!--                                <th>Image</th>-->
+<!--                                <th>Name</th>-->
+<!--                                <th>Email</th>-->
+<!--                            </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+<!--                            <tr t-foreach="partners" t-as="partner">-->
+<!--                                <td>-->
+<!--                                    <t t-esc="partner.image_1920" t-options='{"widget": "image"}'/>-->
+<!--                                </td>-->
+<!--                                <td><t t-esc="partner.name"/></td>-->
+<!--                                <td><t t-esc="partner.email"/></td>-->
+<!--                            </tr>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                        </div>-->
+                    </div>
+
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

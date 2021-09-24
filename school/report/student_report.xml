@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+   s <template id="school_report_page">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+               <t t-call="web.external_layout">
+                <div class="page">
+<!--                        <div class="oe_structure"/>-->
+                        <div class="row">
+                            <div class="col-xs-2" style="margin:100px;">
+                            </div>
+                            <center>
+                                <div class="col-xs-8" style="margin:auto">
+                                    <table class="table table-condensed" style="border: 3px dotted black !important;">
+                                        <tr>
+                                            <td width="40%">
+                                                <p>
+                                                    <h2>
+                                                        <strong>
+                                                            <span t-field="o.name"/>
+                                                        </strong>
+                                                    </h2>
+                                                </p>
+                                            </td>
+                                            <td width="60%">
+                                                <table style="border: 3px solid black !important;">
+                                                    <tr>
+                                                        <td>
+                                                            <p>
+                                                                <strong>Student Name</strong>
+                                                            </p>
+                                                            <p>
+                                                                <strong>Gender</strong>
+                                                            </p>
+                                                            <p>
+                                                                <strong>Roll No</strong>
+                                                            </p>
+                                                            <p>
+                                                                <strong>Address</strong>
+                                                            </p>
+                                                            <p>
+                                                                <strong>URL</strong>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p style="padding-left:10px;"
+                                                               t-field="o.name"/>
+                                                            <p style="padding-left:10px;"
+                                                               t-field="o.student_gender"/>
+                                                            <p style="padding-left:10px;"
+                                                               t-field="o.roll_no"/>
+                                                            <p style="padding-left:10px;"
+                                                                t-field="o.address"/>
+                                                            <p style="padding-left:10px;"
+                                                                t-field="o.field_with_url"/>
+                                                        </td>
+
+                                                    </tr>
+                                                </table>
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                    <div style="margin-top:10px">
+                        <table class="table table-condensed" style="border-style: solid;">
+                            <thead>
+                                <th>Name</th>
+                                <th>Language</th>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.teacher_ids" t-as="teacher">
+                                    <tr>
+                                        <td>
+                                            <span t-field="teacher.name"/>
+                                        </td>
+
+                                        <td>
+                                            <span t-field="teacher.language"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+
+
+        
+                        
+    </template>
+
+
+    <record id="school_report_action" model="ir.actions.report">
+        <field name="name">Student Report</field>
+        <field name="model">student.student</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">school.school_report_page</field>
+        <field name="report_file">school.school_report_page</field>
+        <field name="binding_model_id" ref="model_student_student"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

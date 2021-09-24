@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+<!--        forcecreate="False"-->
+        <record model="ir.config_parameter" id="teacher_active_config">
+            <field name="key">school.teacher_active_config</field>
+            <field name="value">False</field>
+        </record>
+
+    </data>
+</odoo>

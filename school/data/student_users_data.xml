@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="student_record_1" model="student.student">
+        <field name="name">Virat</field>
+        <field name="student_gender">Female</field>
+        <field name="roll_no">14</field>
+        <field name="address">Veraval</field>
+        <field name="field_with_url">www.odoo.com</field>
+        <field name="school_result">5</field>
+    </record>
+
+    <record id="student_record_2" model="student.student">
+        <field name="name">Krisha</field>
+        <field name="student_gender">Female</field>
+        <field name="roll_no">15</field>
+        <field name="address">Ahm</field>
+        <field name="field_with_url">www.odoo.com</field>
+        <field name="school_result">6</field>
+
+    </record>
+
+   
+    <record id="teacher_record_1" model="teacher.teacher">
+        <field name="name">Aarti</field>
+        <field name="language">Gujarati</field>
+    </record>
+
+    <record id="teacher_record_2" model="teacher.teacher">
+        <field name="name">Renu</field>
+        <field name="language">English</field>
+    </record>
+</odoo>

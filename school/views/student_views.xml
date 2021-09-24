@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  
+    <record id="student_tree_view" model="ir.ui.view">
+      <field name="name">student.tree.view</field>
+      <field name="model">student.student</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="sequence" widget="handle"/>
+          <field name="name" string="Student Name"/>
+          <field name="roll_no" string="Roll No" />
+          <field name="address" string="Address" />
+          <field name="field_with_url" widget="url"/>
+          <field name="school_result"/>
+          
+        </tree>     
+      </field>
+    </record>
+
+    <record id="student_form_view" model="ir.ui.view">
+        <field name="name">student.form.view</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type='action' name='%(action_student_wizard)d' string="Student Fees" ></button>
+                    <button name="action_confirm" string="Confirm" class="oe_highlight" type="object" states="draft"/>
+
+                    <button id="button_done" name="action_done" string="Done" class="border border-primary"  type="object"/>
+                    <button id="button_cancel" name="action_draft" string="Cancel" states="create,received,done" type="object"/>
+                    <field name="state" widget="statusbar" options="{'clickable':0}" statusbar_visible="draft,confirm,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+
+                        <button class="oe_stat_button" name="clear_record_data"
+                                string="Clear" type="object" icon="fa-eraser"/>
+
+                        <button class="oe_stat_button" name="unlink"
+                                string="Delete" type="object" icon="fa-trash"/>
+
+                        <button class="oe_stat_button" name="copy"
+                                string="Copy" type="object" icon="fa-copy"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" string="Student Name"/>
+                            <field name="student_gender" widget='radio' options="{'horizontal': true}"/>
+                            <field name="is_agreed" widget="website_redirect_button"/>
+                            <field name="field_with_url" widget="url"/>
+                        </group>
+                        <group>
+                            <field name="roll_no" string="Roll No"/>
+                            <field name="address" string="Address"/>
+                            <field name="school_result"/>
+                        </group>
+                    </group>
+                    <notebook> 
+                        <page string="Teacher Menu">
+                            <field name="teacher_ids">
+
+                                <tree editable="true">
+                                    <field name="name"/>
+                                    <field name="language"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>     
+        </field>
+    </record>
+
+    <record id="student_school_action" model="ir.actions.act_window">
+        <field name="name">student.action</field>
+        <field name="res_model">student.student</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="school_root" name="School Information"/>
+    <menuitem id="school_nav1" name="School Student" parent="school_root" action="student_school_action"/>
+</odoo>
