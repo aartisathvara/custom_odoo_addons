@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_order_page" name="Sale Order">
+        <t t-call="website.layout">
+            <div class='oe_structure'>
+                 <div class="container">
+                    <form role='form' action='/view_sale_order' type='post'>
+                        <div class="form">
+                            <div class="form-group">
+                                <label for="sale_orders">Sale Order</label>
+                                <select name='sale_orders' t-as="order" class="form-select form-select-lg mb-3">
+                                    <t t-foreach="sale_orders" t-as="order">
+                                        <option t-esc="order.name" t-att-value='order.id'></option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clearfix oe_login_buttons">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
+                 </div>
+            </div>
+        </t>
+    </template>
+
+     <template id="view_sale_order_page" name="Sale Order">
+        <t t-call="portal.portal_layout">
+            <t t-if="sale_data" t-call="portal.portal_table">
+                <div>
+                </div>
+
+                <thead>
+                    <tr>
+                        <th class="text-left">Fields</th>
+                        <th class="text-left">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr>
+                        <td>Sale Order</td>
+                        <td><t t-esc="sale_data.name"/></td>
+                    </tr>
+                    <tr>
+                        <td>Customer</td>
+                        <td><t t-esc="sale_data.partner_id.name"/></td>
+                    </tr>
+                    <tr>
+                        <td>Delivery Address</td>
+                        <td><t t-esc="partner_delivery_address"/></td>
+                    </tr>
+                    <tr>
+                        <td>Invoice Address</td>
+                        <td><t t-esc="partner_invoice_address"/></td>
+                    </tr>
+                    <tr>
+                        <td>Payment terms</td>
+                        <td><t t-esc="sale_data.payment_term_id.name"/></td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr class="active">
+                        <th>Product</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>SubTotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="sale_data.order_line" t-as="line">
+                        <tr>
+                            <td><t t-esc="line.product_id.name"/></td>
+                            <td><t t-esc="line.name"/></td>
+                            <td><t t-esc="line.product_uom_qty"/></td>
+                            <td><t t-esc="line.price_unit"/></td>
+                            <td><t t-esc="line.price_subtotal"/></td>
+                        </tr>
+                    </t>
+                </tbody>
+            </t>
+        </t>
+    </template>
+</odoo>
