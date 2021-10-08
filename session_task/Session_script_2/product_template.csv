@@ -1,0 +1,29 @@
+id,name,default_code,list_price,standard_price
+product.product_product_25_product_template,Acoustic Screen Bloc,FURN_6666,2950,2870
+product.product_product_10_product_template,Cabinet with Doors,E-COM11,14,12.5
+product.product_product_11_product_template,Conference Chair (CONFIG),,16.5,0
+product.product_product_13_product_template,Corner Desk Left Sit,FURN_1118,85,78
+product.product_product_5_product_template,Corner Desk Right Sit,E-COM06,147,600
+product.product_product_4_product_template,Customizable Desk (CONFIG),,750,0
+sale.advance_product_0_product_template,Deposit,,150,100
+product.product_product_3_product_template,Desk Combination,FURN_7800,450,300
+product.product_product_22_product_template,Desk Stand with Screen,FURN_7888,2100,2010
+product.product_product_27_product_template,Drawer,FURN_8855,3645,3300
+product.product_product_16_product_template,Drawer Black,FURN_8900,25,20
+product.product_product_20_product_template,Flipover,FURN_9001,1950,1700
+product.consu_delivery_03_product_template,Four Person Desk,FURN_8220,23500,25000
+product.expense_hotel_product_template,Hotel Accommodation,,400,400
+product.product_product_24_product_template,Individual Workplace,FURN_0789,885,876
+product.product_product_6_product_template,Large Cabinet,E-COM07,320,800
+product.product_product_8_product_template,Large Desk,E-COM09,1799,1299
+product.consu_delivery_02_product_template,Large Meeting Table,FURN_6741,40000,45000
+product.product_delivery_01_product_template,Office Chair,FURN_7777,70,55
+product.product_product_12_product_template,Office Chair Black,FURN_0269,12.5,18
+product.product_order_01_product_template,Office Design Software,FURN_9999,280,235
+product.product_delivery_02_product_template,Office Lamp,FURN_8888,40,35
+product.product_product_9_product_template,Pedal Bin,E-COM10,47,10
+product.expense_product_product_template,Restaurant Expenses,,14,8
+product.product_product_7_product_template,Storage Box,E-COM08,79,70
+product.consu_delivery_01_product_template,Three-Seat Sofa,FURN_8999,1500,1000
+product.product_product_2_product_template,Virtual Home Staging,,38.25,25.5
+product.product_product_1_product_template,Virtual Interior Design,,30.75,20.5

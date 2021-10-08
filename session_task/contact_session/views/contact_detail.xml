@@ -1,0 +1,89 @@
+<odoo>
+    <template id="contact_detail" name="Contact Detail">
+        <t t-call="website.layout">
+            <t t-set="title">Contact Detail</t>
+            <div class="oe_structure">
+                <div class="container">
+                    <div class="contact_main_wrapper">
+                        <div class="contact_details_wrapper">
+                            <div class="contact_details_data_wrapper">
+                                <div class="contact_name">
+                                    <t t-esc="contact_detail.name"/>
+                                </div>
+                                <div class="contact_detail_wrapper">
+                                    <div class="contact_email">
+                                        <label>Email:&#160;&#160;</label>
+                                        <t t-esc="contact_detail.email"/>
+                                    </div>
+                                    <div class="contact_phone">
+                                        <label>Phone:&#160;&#160;</label>
+                                        <t t-esc="contact_detail.phone"/>
+                                    </div>
+                                </div>
+                                <div class="contact_address_wrapper">
+                                    <label>Address:&#160;&#160;</label>
+                                    <div class="contact_address_details">
+                                        <t t-esc="contact_detail.street"/>,
+                                        <br/>
+                                        <t t-esc="contact_detail.city"/>,
+                                        <br/>
+                                        <t t-esc="contact_detail.state_id.name"/>,
+                                        <t t-esc="contact_detail.zip"/>,
+                                        <br/>
+                                        <t t-esc="contact_detail.country_id.name"/>
+                                    </div>
+                                </div>
+                                <div class="contact_member_tbl">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="contact_detail.team_lead_ids" t-as="members">
+                                                <tr>
+                                                    <td>
+                                                        <t t-esc="members.id"/>
+                                                    </td>
+                                                    <td>
+                                                        <t t-esc="members.name"/>
+                                                    </td>
+                                                    <td>
+                                                        <t t-esc="members.email"/>
+                                                    </td>
+                                                    <td>
+                                                        <t t-esc="members.phone"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="contact_details_img_wrapper">
+                                <div class="contact_img_wrapper">
+                                    <img t-att-src="'/web/image/res.partner/%s/image_1920' % contact_detail.id"
+                                         class="contact_img"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
+
+
+        <!--<div class="" style="margin: 100px 0px;">-->
+        <!--<form enctype="multipart/form-data" method="post" action="/partner_update">-->
+        <!--    <input type="hidden" name="id" t-att-value="contact_detail.id"/>-->
+        <!--    <input type="text" name="name" t-att-value="contact_detail.name"/>-->
+
+        <!--    <input type="submit" value="Submit"/>-->
+        <!--</form>-->
+        <!--</div>-->
