@@ -16,7 +16,7 @@
                             </div>
                         </div>
                         <div class="clearfix oe_login_buttons">
-                            <button type="submit" class="btn btn-primary">Search</button>
+                            <button type="submit" name="csrf_token" t-att-value="request.csrf_token()"  class="btn btn-primary">Search</button>
                         </div>
                     </form>
                  </div>

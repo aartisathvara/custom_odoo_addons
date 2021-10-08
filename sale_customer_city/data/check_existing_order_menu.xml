@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="check_existing_order_menu" model="website.menu">
+           <field name="name">Check Existing Order</field>
+           <field name="parent_id" ref="website.main_menu" />
+           <field name="url">/check_existing_order</field>
+    </record>
+</odoo>

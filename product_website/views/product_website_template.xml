@@ -1,0 +1,29 @@
+<odoo>
+    <template id="product_website_template" name="Product Website">
+        <t t-call="website.layout">
+            <t t-set="title">Product</t>
+            <div class="oe_structure flex-container-list">
+                <t t-foreach="product" t-as="product">
+                    <a t-attf-href="/product/#{product.id}" class="flex-container-item col-sm-5 col-md-3">
+                        <div class="product_image_wrapper">
+                            <!-- <a t-attf-href="/product/#{product.id}"> -->
+                                <img t-att-src="'/web/image/product.template/%s/image_1920' % product.id" class="product_image"/>
+                            <!-- </a> -->
+                        </div>
+                        <div class="wrap_text">
+                            <div >
+                                <!-- <a t-attf-href="/product/#{product.id}"> -->
+                                    <t t-esc="product.name"/>
+                                <!-- </a> -->
+                            </div>
+                            <div>
+                                On Hand:
+                                <span t-esc="product.qty_available"/>
+                            </div>
+                        </div>
+                    </a>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>

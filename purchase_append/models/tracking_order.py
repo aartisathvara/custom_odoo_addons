@@ -1,6 +1,7 @@
 from odoo import fields, models
 from odoo.tools.translate import _
 
+
 class TrackingOrder(models.Model):
     _name = "tracking.order"
     _description = "Order tracking"

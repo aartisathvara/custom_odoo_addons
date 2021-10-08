@@ -2,57 +2,61 @@
     <template id="partner_page" name="Partners">
         <t t-call="website.layout">
             <t t-set="title">Partners</t>
-            <div class="oe_structure">
+             <div class="oe_structure">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-6">
-<!--                            <div class="table-responsive">-->
-                            <table id="partners_list" class="table table-hover">
-                            <thead class="thead-dark">
+                    <div class="contacts_list_wrapper">
+                        <table class="contact_list_tbl">
+                            <thead>
                                 <tr>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
+                                    <th class="contact_image_col display_web"></th>
+                                    <th class="contact_name_col display_web">Name</th>
+                                    <th class="contact_email_col display_web">Email</th>
+                                    <th class="contact_email_col display_web">Mobile</th>
+                                    <th class="contact_email_col display_web">Address</th>
+                                    <th class="contact_email_col display_web">Team Lead</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr t-foreach="partners" t-as="partner">
-                                    <td>
-                                        <div class="img-fluid">
-                                            <t  t-esc="partner.image_1920" t-options='{"widget": "image"}'/>
-                                        </div>
-                                    </td>
-                                    <td><t t-esc="partner.name"/></td>
-                                    <td><t t-esc="partner.email"/></td>
-                                </tr>
+                                <t t-foreach="partners" t-as="partner">
+                                    <tr>
+                                        <td class="contact_image_col">
+                                            <div class="contact_image_main_wrapper">
+                                                <div class="contact_image_wrapper">
+                                                    <img t-att-src="'/web/image/res.partner/%s/image_1920' % partner.id" class="contact_image"/>
+                                                </div>
+                                                <div class="display_mobile contact_mobile_details_wrapper">
+                                                    <div>
+                                                        <t t-esc="partner.name"/>
+                                                    </div>
+                                                    <div>
+                                                        <t t-esc="partner.email"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="contact_name_col display_web">
+                                                <t t-esc="partner.name"/>
+                                        </td>
+                                        <td class="contact_email_col display_web">
+                                            <t t-esc="partner.email"/>
+                                        </td>
+                                         <td class="contact_name_col display_web">
+                                                <t t-esc="partner.phone"/>
+                                        </td>
+                                         <td class="contact_name_col display_web">
+                                                <t t-esc="partner.name"/>
+                                        </td>
+                                         <td class="contact_name_col display_web">
+                                                <t t-esc="partner.name"/>
+                                        </td>
+                                    </tr>
+                                </t>
                             </tbody>
                         </table>
-<!--                            </div>-->
-                        </div>
-<!--                        <div class="col-6">-->
-<!--                            <table id="partners_list" class="table table-hover">-->
-<!--                        <thead class="thead-dark">-->
-<!--                            <tr>-->
-<!--                                <th>Image</th>-->
-<!--                                <th>Name</th>-->
-<!--                                <th>Email</th>-->
-<!--                            </tr>-->
-<!--                        </thead>-->
-<!--                        <tbody>-->
-<!--                            <tr t-foreach="partners" t-as="partner">-->
-<!--                                <td>-->
-<!--                                    <t t-esc="partner.image_1920" t-options='{"widget": "image"}'/>-->
-<!--                                </td>-->
-<!--                                <td><t t-esc="partner.name"/></td>-->
-<!--                                <td><t t-esc="partner.email"/></td>-->
-<!--                            </tr>-->
-<!--                        </tbody>-->
-<!--                    </table>-->
-<!--                        </div>-->
                     </div>
-
                 </div>
             </div>
+
         </t>
     </template>
 </odoo>

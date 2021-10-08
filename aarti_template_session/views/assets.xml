@@ -3,6 +3,8 @@
     <template id="assets_frontend" name="im assets" inherit_id="website.assets_frontend">
         <xpath expr="." position="inside">
             <link rel="stylesheet" type="text/css" href="/aarti_template_session/static/src/css/partner_page.css"/>
+            <link rel="stylesheet" type="text/css" href="/aarti_template_session/static/src/css/product_page.css"/>
+            <script type="text/javascript" src="/aarti_template_session/static/src/js/countdown.js"></script>
         </xpath>
     </template>
 </odoo>

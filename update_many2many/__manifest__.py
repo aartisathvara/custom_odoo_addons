@@ -6,7 +6,7 @@
     "author": "My Company",
     "website": "http://www.yourcompany.com",
     "category": "Uncategorized",
-    "version": "14.0.1.0.0",
+    "version": "14.0.purchase_append.0.0",
     "depends": ["base", "sale_management",'stock'],
     "data": [
         "views/sale_res_partner.xml",

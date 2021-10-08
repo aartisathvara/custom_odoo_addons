@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="hr_referral_application_tree_view" model="ir.ui.view">
+        <field name="name">hr.referral.application.tree.view</field>
+        <field name="model">hr.referral.application</field>
+        <field name="arch" type="xml">
+            <tree>
+	          <field name="name"/>
+	          <field name="email"/>
+	          <field name="currency_id"/>
+	          <field name="expected_salary"/>
+	          <field name="state" decoration-danger="state =='cancel'" decoration-success="state == 'approved'"
+                decoration-info="state == 'draft'" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <record  id="hr_referral_application_form_view" model="ir.ui.view">
+        <field name="name">hr.referral.application.form.view</field>
+        <field name="model">hr.referral.application</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button id="button_done" name="action_draft" string="Draft" class="oe_highlight"  type="object"  attrs="{'invisible':[('state','in',['draft','approved'])]}"/>
+                    <button name="action_approved" string="Approved" class="oe_highlight" type="object"
+                            attrs="{'invisible':[('state','in',['cancel','approved'])]}" groups="hr_recruitment.group_hr_recruitment_user"/>
+                    <button string="Create Application" class="oe_highlight"  attrs="{'invisible':[('state','in',['draft','cancel'])]}" />
+                    <button id="button_cancel" name="action_cancel" class="oe_highlight" string="Cancel"  attrs="{'invisible':[('state','in',['draft','cancel'])]}"  type="object"/>
+                    <field name="state" widget="statusbar" options="{'clickable':0}" statusbar_visible="draft,approved,cancel"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+			              <group>
+			                  <field name="referral_id"/>
+			                  <field name="department_id"/>
+			                  <field name="degree_id"/>
+			              </group>
+			              <group>
+							  <field name="email"/>
+			                  <field name="currency_id"/>
+			                  <field name="expected_salary"/>
+			                  <field name="joining_date"/>
+			              </group>
+                    </group>
+                    <notebook>
+                        <page string="Hr Summary">
+                            <field name='summary' />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+      </field>
+    </record>
+
+    <record id="hr_referral_application_search_view" model="ir.ui.view">
+        <field name="model">hr.referral.application</field>
+        <field name="arch" type="xml">
+	        <search string="name">
+	            <field name="name"/>
+	            <field name="degree_id"/>
+	            <field name="referral_id"/>
+	                <filter string="Approved" name="action_approved" domain="[('state','=', 'approved')]"/>
+	                <filter string="Draft" name="action_draft" domain="[('state','=', 'draft')]"/>
+	                <filter string="Cancel" name="action_cancel" domain="[('state','=', 'cancel')]"/>
+	                <group expand="1" string="Group By">
+	                    <filter name="joining_date" string="Joining Date" context="{'group_by':'joining_date'}"/>
+	                </group>
+	        </search>
+        </field>
+    </record>
+
+
+    <record id="hr_referral_application_action" model="ir.actions.act_window">
+        <field name="name">Hr Referral</field>
+        <field name="res_model">hr.referral.application</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="hr_referral_application_root_menu" name="Hr Referral"/>
+    <menuitem name="Hr Referral" id="hr_ref_app_menu" action="hr_referral_application_action"
+              parent="hr_referral_application_root_menu"/>
+
+</odoo>

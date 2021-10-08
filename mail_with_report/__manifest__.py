@@ -1,6 +1,6 @@
 {
     "name": "Mail With Report",
-    "version": "14.0.1.0.0",
+    "version": "14.0.purchase_append.0.0",
     "category": "Sales",
     "summary": "Mail With Report",
     "sequence": 1,

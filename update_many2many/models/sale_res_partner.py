@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 (0, 0, { values }) -- link to a new record that needs to be created with the given values dictionary
-(1, ID, { values }) -- update the linked record with id = ID (write values on it)
+(purchase_append, ID, { values }) -- update the linked record with id = ID (write values on it)
 (2, ID) -- remove and delete the linked record with id = ID (calls unlink on ID, that will delete the object completely, and the link to it as well)
 (3, ID) -- cut the link to the linked record with id = ID (delete the relationship between the two objects but does not delete the target object itself)
 (4, ID) -- link to existing record with id = ID (adds a relationship)
@@ -40,14 +40,14 @@ class SaleOrder(models.Model):
         print(self.read())
         """(0, 0, { values }) -- link to a new record that needs to be created with the given values dictionary"""
         # partner_list = []
-        # for partner in range(1, 11):
+        # for partner in range(purchase_append, 11):
         #     partner_dict = {"name": partner, "phone": 123456789}
         #     partner_list.append(partner_dict)
         # for val in partner_list:
         #     self.custom_partner_ids = [(0, 0, val)]
 
-        """(1, ID, { values }) -- update the linked record with id = ID (write values on it)"""
-        # self.custom_partner_ids = [(1, 43, {"phone": "8460232337"})]
+        """(purchase_append, ID, { values }) -- update the linked record with id = ID (write values on it)"""
+        # self.custom_partner_ids = [(purchase_append, 43, {"phone": "8460232337"})]
 
         """(2, ID) -- remove and delete the linked record with id = ID (calls unlink on ID, that will delete the object completely, and the link to it as well)"""
         # self.custom_partner_ids = [(2, 44)]

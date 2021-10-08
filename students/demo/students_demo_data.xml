@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="te_demo_1" model="teachers.profile">
+            <field name="t_name">RAJ PATEL</field>
+            <field name="t_email">raj@gmail.com</field>
+        </record>
+
+        <record id="te_demo_2" model="teachers.profile">
+            <field name="t_name">JAY PATEL</field>
+            <field name="t_email">jay@gmail.com</field>
+        </record>
+
+        <record id="te_demo_3" model="teachers.profile">
+            <field name="t_name">FORAM PATEL</field>
+            <field name="t_email">foram@gmail.com</field>
+        </record>
+
+        <record id="se_demo_1" model="students.profile">
+            <field name="name">kush</field>
+            <field name="phone">9825468528</field>
+            <field name="birthday" eval="(DateTime.now())" />
+            <!-- <field name="age">12</field> -->
+        </record>
+
+        <record id="se_demo_2" model="students.profile">
+            <field name="name">sh</field>
+            <field name="phone">984535752</field>
+            <field name="birthday" eval="(DateTime.now())" />
+            <!-- <field name="age">13</field> -->
+        </record>
+
+        <record id="se_demo_3" model="students.profile">
+            <field name="name">Kika</field>
+            <field name="phone">984535052</field>
+            <field name="birthday" eval="(DateTime.now())" />
+            <field name="student_teacher" ref="te_demo_2"/>
+            <!-- <field name="age">13</field> -->
+        </record>
+
+        <record id="se_demo_4" model="students.profile">
+            <field name="name">Kaka</field>
+            <field name="phone">984539052</field>
+            <field name="birthday" eval="(DateTime.now())" />
+            <field name="student_teacher" ref="te_demo_3"/>
+            <!-- <field name="age">13</field> -->
+        </record>
+
+        <record id = "se_demo_5" model="students.profile">
+            <field name="name">jjj</field>
+            <field name="phone">2345678934</field>
+            <field name="school_details" eval="[(0,0,{'school_name':'RAJA SCHOOL', 'school_fees':7000})]"/>
+        </record>
+       
+    </data>
+</odoo>

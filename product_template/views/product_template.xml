@@ -1,0 +1,207 @@
+<odoo>
+    <template id="product_template_list_page" name="Product Template">
+        <t t-call="website.layout">
+            <t t-set="title">Product</t>
+            <div class="container">
+                <div class="row">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr class='col-md-4' t-foreach="product_template_list" t-as="product">
+                                <td class="as_product">
+                                    <div class="as_product_details">
+                                        <div class="as_product_image_wrapper">
+                                            <div class="as_card as_product_image">
+                                                <span t-field="product.image_1920" t-options='{"widget": "image"}'/>
+                                            </div>
+                                        </div>
+                                        <div class="as_card">
+                                            <h6>
+                                                <a t-attf-href="/product/info/#{product.id}">
+                                                    <sapn t-esc="product.name"/>
+                                                </a>
+                                            </h6>
+                                            <div class="as_product_price">
+                                                <span t-esc="product.list_price"
+                                                    t-options="{'widget':'monetary','display_currency':website.currency_id}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </t>
+    </template>
+
+    <template id="product_info_page" name="Product Info">
+        <t t-call="website.layout">
+            <t t-set="title" t-value="product_info.name"></t>
+            <div class="container">
+                <div class="row mt-2">
+                    <div class="col-md-4 as_product_title">
+                        <p><a href="/product_template">Products</a></p>
+                        <p>/</p>
+                        <p>
+                            <span t-esc="product_info.name"/>
+                        </p>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class=" col-md-12 as_product_container">
+                        <!--Product Image     -->
+                        <div class="col-md-6">
+                            <div>
+                                <span t-field="product_info.image_1920" t-options='{"widget": "image"}'/>
+                            </div>
+                        </div>
+                        <!--Product details    -->
+                        <div class="col-md-6">
+
+                            <!--Product name  -->
+                            <div class="product_container_info_name">
+                                <h1>
+                                    <spna t-esc="product_info.name"/>
+                                </h1>
+                            </div>
+
+                            <!-- Product price  -->
+                            <div class="product_container_info_price">
+                                <h4>
+                                    <span t-esc="product_info.list_price"
+                                                      t-options="{'widget':'monetary','display_currency':website.currency_id}"/>
+                                    <span class="price_text">$ 100.0</span>
+                                    <span class="price_off">(10% off)</span>
+                                </h4>
+                            </div>
+
+                            <!-- offer countdown  -->
+                            <div class="offer_counter_block">
+                                <div class="offer_counter">
+                                        Offer Ends In!!
+                                </div>
+                                <div class="product_countdown_main">
+                                    <div class="countdown_block">
+                                        <div class="countdown_details">
+                                            <div class="countdown_number">
+                                                <h3 class="count_days"/>
+                                            </div>
+                                            <div class="countdown_string">
+                                                Days
+                                            </div>
+                                        </div>
+                                        <div class="countdown_separator">
+                                            :
+                                        </div>
+                                    </div>
+                                    <div class="countdown_block">
+                                        <div class="countdown_details">
+                                            <div class="countdown_number">
+                                                <h3 class="count_hours"/>
+                                            </div>
+                                            <div class="countdown_string">
+                                                Hours
+                                            </div>
+                                        </div>
+                                        <div class="countdown_separator">
+                                            :
+                                        </div>
+                                    </div>
+                                    <div class="countdown_block">
+                                        <div class="countdown_details">
+                                            <div class="countdown_number">
+                                                <h3 class="count_minutes"/>
+                                            </div>
+                                            <div class="countdown_string">
+                                                Mins
+                                            </div>
+                                        </div>
+                                        <div class="countdown_separator">
+                                            :
+                                        </div>
+                                    </div>
+                                    <div class="countdown_block">
+                                        <div class="countdown_details">
+                                            <div class="countdown_number">
+                                                  <h3 class="count_seconds"/>
+                                            </div>
+                                            <div class="countdown_string">
+                                                Secs
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Product Variant -->
+                            <t t-if="product_info.attribute_line_ids">
+                                <div class="as_product_variants_block">
+                                    <t t-foreach="product_info.valid_product_template_attribute_line_ids" t-as="attribute_line">
+                                        <li class="as_product_variants">
+                                            <div class="variant_attribute_name">
+                                                <strong  t-field="attribute_line.attribute_id.name"/>
+                                            </div>
+                                            <t t-if="attribute_line.attribute_id.display_type == 'select'">
+                                               <select class="form-control" t-att-name="'attribute_line-%s' % attribute_line.id">
+                                                    <t t-foreach="attribute_line.product_template_value_ids._only_active()" t-as="attribute">
+                                                        <option t-att-value="attribute.id">
+                                                            <span t-field="attribute.name"/>
+                                                        </option>
+                                                    </t>
+                                               </select>
+                                            </t>
+                                            <t t-if="attribute_line.attribute_id.display_type == 'radio'">
+                                                <ul class="as_product_variants">
+                                                    <t t-foreach="attribute_line.product_template_value_ids._only_active()" t-as="attribute">
+                                                        <li class="form-group">
+                                                            <label class="col-form-label">
+                                                            <div>
+                                                                <input type="radio"
+                                                                    t-att-name="attribute_line.id"
+                                                                    t-att-value="attribute.id"
+                                                                    t-att-data-value_id="attribute.id"
+                                                                    t-att-data-value_name="attribute.name"
+                                                                    t-att-data-attribute_name="attribute.attribute_id.name"
+                                                                    class="variant_radio_input"
+                                                                />
+                                                                <div class="attribute_radio_input">
+                                                                    <strong><span t-field="attribute.name"/></strong>
+                                                                </div>
+                                                            </div>
+                                                            </label>
+                                                        </li>
+                                                    </t>
+                                                </ul>
+                                            </t>
+                                            <t t-if="attribute_line.attribute_id.display_type == 'color'">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item" t-foreach="attribute_line.product_template_value_ids._only_active()" t-as="attribute">
+                                                        <label class="attribute_color_label_style col-form-label"
+                                                                t-attf-style="background-color:#{attribute.html_color or attribute.product_attribute_value_id.name if not attribute.is_custom else ''}">
+                                                                <input type="radio"
+                                                                    t-att-name="attribute_line.id"
+                                                                    t-att-value="attribute.id"
+                                                                    t-att-title="attribute.name"
+                                                                    t-att-data-value_id="attribute.id"
+                                                                    t-att-data-value_name="attribute.name"
+                                                                    t-att-data-attribute_name="attribute.attribute_id.name"
+                                                                    class="attribute_color_btn_style"
+                                                                   />
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </t>
+                                        </li>
+                                    </t>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

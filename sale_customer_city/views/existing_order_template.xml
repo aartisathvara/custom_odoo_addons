@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo >
+    <template id = "existing_order_page" name = "Existing Order" >
+        <t t-call = "website.layout" >
+            <form role = 'form' action = '/check_existing_order' type = 'post' >
+	            <div class = "m-4" >
+		            <div class = "row" >
+		                <label class = "col-sm-2 col-form-label col-form-label-lg" >Start Date</label >
+		                <div class = "col-sm-4" >
+		                    <input id = "start_date" type = "date" name = "start_date"
+		                           class = "form-control o_website_form_input o_website_form_date" />
+		                </div >
+		            </div >
+		            <div class = "row" >
+	                    <label class = "col-sm-2 col-form-label col-form-label-lg" >End Date</label >
+	                    <div class = "col-sm-4" >
+	                        <input id = "end_date" type = "date" name = "end_date"
+	                               class = "form-control o_website_form_input o_website_form_date" />
+	                    </div >
+	                </div >
+	                <div class = "row" >
+                        <label class = "col-sm-2 col-form-label col-form-label-lg" for = "status" >Status</label >
+<!--                         <select name="state" class="form-control col-12" id="student_stage">-->
+<!--                                <option value="all">All</option>-->
+<!--                                <t t-foreach="state" t-as="st">-->
+<!--                                    <option t-att-value="st">-->
+<!--                                        <t t-esc="st_value"/>-->
+<!--                                    </option>-->
+<!--                                </t>-->
+<!--                            </select>-->
+                        <select name = 'status' class = "col-sm-2" >
+                            <option t-value = 'all' >All</option >
+                            <t t-foreach = 'states' t-as = "state" >
+                                <option t-att-value="state" ></option >
+                            </t >
+                        </select >
+                    </div >
+	                <div class = "col-sm-2 clearfix oe_login_buttons" >
+	                    <button type = "submit" name = "csrf_token" t-att-value = "request.csrf_token()"
+	                            class = "btn btn-primary" >Search</button >
+	                </div >
+	            </div >
+            </form >
+	        <t t-if="sale_orders">
+		        <h1>Lists Sales Order</h1>
+		        <t t-foreach="sale_orders" t-as="order">
+<!--			        <p><span t-esc='order.read()'/></p>-->
+			        <div>
+				        <h1>Order:<span t-esc="order.name"/></h1>
+			        </div>
+			        <table class="table">
+				        <tr>
+					        <th>Name</th><td><span t-esc='order.partner_id.name'/></td>
+				        </tr>
+				        <tr>
+					        <th>Address</th><td><span t-esc='order.partner_id.street'/></td>
+				        </tr>
+				        <tr>
+					        <th>Delivery Address</th><td><span t-esc='order.partner_shipping_id.street'/></td>
+				        </tr>
+				        <tr>
+					        <th>Billing Address</th><td><span t-esc='order.partner_invoice_id.street'/></td>
+				        </tr>
+				        <t t-if="order.order_line">
+				        <table class = "table" >
+                            <thead >
+								<tr>
+								  <th>Products</th >
+								  <th>Quantity</th >
+								  <th>Unit Price</th >
+								  <th>Taxes</th >
+								  <th>Amount</th >
+								</tr>
+							</thead >
+		                    <tbody >
+			                    <t t-foreach="order.order_line" t-as="line">
+									<tr>
+									    <td><span t-esc="line.name"/></td >
+									    <td><span t-esc="line.product_uom_qty"/></td >
+									    <td><span t-esc="line.price_unit"/></td >
+										<t t-if="line.tax_id">
+											<td t-foreach="line.tax_id" t-as="tax">
+												<span t-esc="tax.name"/>
+											</td >
+										</t>
+										<t t-else="">
+											<td></td>
+										</t>
+									    <td><span t-esc="line.price_subtotal"/></td >
+									</tr >
+			                    </t>
+                            </tbody >
+						</table >
+				        </t>
+			        </table>
+			        <div style="float:right">
+				        <table class="table">
+					        <tr>
+						        <th>Total:</th>
+						        <td><span t-esc="order.amount_total"/></td>
+					        </tr>
+				        </table>
+			        </div>
+					<h6>
+				        <tr>
+					        <th>Sale Person:</th>
+					        <td><span t-esc="order.user_id.name"/></td>
+				        </tr>
+					</h6>
+		        </t>
+	        </t>
+         
+        </t>
+	</template >
+	
+<!--	    	my name filed add-->
+	<template id = "myname_portal" name = "myname" inherit_id = "portal.portal_my_details" >
+			<xpath expr = "//div[hasclass('col-lg-12')]" position = "before" >
+				<div class = "col-xl-12" >
+                    <label class = "col-form-label" for = "my_name" >My Name</label >
+                    <input type = "text" name = "my_name" class = "form-control"
+                           t-att-value = "my_name or partner.my_name" />
+                </div>
+			</xpath>
+	</template>
+<!--	-->
+	<!--#add menu i n porttal -->
+	<!-- <template id="portal_my_home_sale" name="Show Quotations / Sales Orders" customize_show="True" inherit_id="portal.portal_my_home" priority="20">-->
+	<!--        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">-->
+	<!--            <t t-call="portal.portal_docs_entry">-->
+	<!--                <t t-set="title">Quotations</t>-->
+	<!--                <t t-set="url" t-value="'/my/quotes'"/>-->
+	<!--                <t t-set="placeholder_count" t-value="'quotation_count'"/>-->
+	<!--            </t>-->
+	<!--            <t t-call="portal.portal_docs_entry">-->
+	<!--                <t t-set="title">Sales Orders</t>-->
+	<!--                <t t-set="url" t-value="'/my/orders'"/>-->
+	<!--                <t t-set="placeholder_count" t-value="'order_count'"/>-->
+	<!--            </t>-->
+	<!--        </xpath>-->
+	<!--    </template>-->
+</odoo >

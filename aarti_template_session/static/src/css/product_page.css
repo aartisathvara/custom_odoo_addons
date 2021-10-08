@@ -1,0 +1,127 @@
+.as_product{
+    display: block;
+    margin-top: 10px;
+    background-color: #f7f7f7;
+}
+.as_product:hover{
+    background-color: #ffeded1a;
+}
+.as_product_details{
+    display:flex;
+}
+.as_product_details > div{
+    padding:10px;
+}
+.as_card{
+    background-color: rgba(255, 255, 255, 0.0) !important;
+    color: black;
+}
+.as_product_image{
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+.as_product_image_wrapper{
+    width: 150px;
+    height: auto;
+}
+.as_product_title{
+    display: flex;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+}
+.as_product_title > p{
+    padding:2px;
+    margin:2px;
+}
+.as_product_container{
+    display: flex;
+    padding:2%;
+    width:auto;
+}
+/*
+#product_container_info{
+    background-color: #f7f7f7;
+    border-radius: 4px;
+}*/
+.product_container_info_name{
+    text-align: left;
+    padding: 5px;
+    margin: 5px;
+}
+.product_container_info_price{
+    padding: 5px;
+    margin: 5px;
+}
+.price_text{
+    padding: 10px;
+    text-decoration: line-through;
+    color: #c9c5c5
+}
+.price_off{
+    color:#dd6767;
+}
+.offer_counter{
+    width: 50%;
+    background-color: #7C7BAD;
+    text-align: center;
+    font-size: 20px;
+    font-family: ui-serif;
+    font-weight: bold;
+    border-bottom: 1px solid #5f5e97;
+    border-radius: 7px;
+    position: relative;
+    align-items: center;
+    left:7%;
+    color: white;
+}
+.product_countdown_main{
+    background-color: white;
+    display: flex;
+    box-shadow: 0px 0px 5px -2px #686868;
+    border-radius: 5px;
+    margin-top: -12px;
+    padding: 15px;
+    width: fit-content;
+}
+.offer_counter_block{
+}
+.countdown_block{
+    display: flex;
+    text-align: center;
+}
+.countdown_details{
+    padding: 0px 15px;
+}
+.countdown_number{
+    text-align:center;
+}
+.countdown_string{
+    text-align:center;
+}
+.attribute_radio_input{
+    display: inline-flex;
+}
+.as_product_variants{
+   list-style: none;
+}
+.as_product_variants_block{
+    margin: 20px;
+    list-style: none;
+}
+.variant_radio_input{
+    margin-right: 10px;
+}
+.attribute_color_btn_style{
+    margin: 12px;
+    opacity: 0;
+    height: 5px;
+}
+.attribute_color_label_style{
+    border: 1px solid #d1d1d1;
+}
+.variant_attribute_name{
+    padding-bottom:10px;
+}

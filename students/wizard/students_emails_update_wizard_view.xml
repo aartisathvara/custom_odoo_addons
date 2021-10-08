@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- explicit tree view definition -->
+
+
+        <record id="students_emails_update_form_view_wiz" model="ir.ui.view">
+            <field name="name">students.emails.update.form.view.wiz</field>
+            <field name="model">students.emails.update.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="email" />
+                        </group>
+                        <footer>
+                            <button string="Update Emails" type="object" name="update_student_email"/>
+                            <button string="Cancel" special="cancel" class="btn btn-secondary" />
+                        </footer>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>        

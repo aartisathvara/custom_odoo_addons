@@ -16,7 +16,7 @@
 #     #         ids = []
 #     #         for model in self.search([]):
 #     #             for app in apps:
-#     #                 if model.modules.find(app.split("_")[0]) != -1:
+#     #                 if model.modules.find(app.split("_")[0]) != -purchase_append:
 #     #                     ids.append(model.id)
 #     #         domain += [("id", "in", ids)]
 #     #     return super(Respartner, self).search_read(domain, fields, offset, limit, order)
@@ -36,7 +36,7 @@
 #             # ids = []
 #             # for model in self.search([]):
 #             #     for app in apps:
-#             #         if model.modules.find(app.split("_")[0]) != -1:
+#             #         if model.modules.find(app.split("_")[0]) != -purchase_append:
 #             #             ids.append(model.id)
 #             partners = self.env['sale.order'].search([]).filtered(lambda l: l.date_order.month == datetime.today().month).mapped("partner_id").ids
 #             print("===partners==",partners, len(partners))

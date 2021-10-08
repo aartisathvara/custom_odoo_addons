@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="customer_document_menu" model="website.menu">
+           <field name="name">Customer Document</field>
+           <field name="parent_id" ref="website.main_menu" />
+           <field name="url">/customer_document</field>
+    </record>
+</odoo>

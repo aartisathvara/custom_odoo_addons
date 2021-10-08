@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_partner_form_view_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='website']" position="after">
+                    <field name="enable_team_lead"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Team Member" attrs="{'invisible':[('enable_team_lead','=',False)]}">
+                        <group>
+                            <field name="team_member_ids" mode="tree" widget="one2many_list">
+                                <tree  editable="bottom">
+                                    <field name="name"/>
+                                    <field name="partner_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

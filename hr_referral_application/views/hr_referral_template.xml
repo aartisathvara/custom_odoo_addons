@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="referral_program_template" name="Referral Program">
+        <t t-call="website.layout">
+			<h1 class="text-center">Referral Registration</h1>
+			<div class='oe_structure'>
+                 <div class="container">
+                    <form role='form' action='/submit_referral_program' type='post'>
+                        <div class="form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Enter Name"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" class="form-control"  placeholder="name@example.com"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="referral_id" class="form-label">Referral Name</label><br></br>
+                                <select  name ="referral_id" class="form-select form-select-sm mb-3">
+                                    <t t-foreach="referral_id" t-as="referral">
+                                        <option t-esc="referral.name" ></option>
+                                    </t>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="degree_id">Degree</label><br></br>
+                                <select name='degree_id' class="form-select form-select-lg mb-3">
+                                    <t t-foreach="degree_id" t-as="degree">
+                                        <option t-esc="degree.name"></option>
+                                    </t>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="department_id">Department</label><br></br>
+                                <select name='department_id' class="form-select form-select-lg mb-3">
+                                    <t t-foreach="department_id" t-as="department">
+                                      <option t-esc="department.name"></option>
+                                    </t>
+                                </select>
+                            </div>
+
+							<div class="form-group">
+                                <label for="expected_salary">Expected Salary</label>
+                                <input type="text" id="expected_salary" name="expected_salary" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="expected_joinning_date">Expected Joinning Date</label>
+                                <input type="date" id="expected_joinning_date" name="expected_joinning_date" class="form-control" />
+                            </div>
+
+							<div class="form-group">
+                                <label for="summary">Summary</label>
+                                <textarea class="form-control" name="summary" id="summary" placeholder="Type here.."></textarea>
+                            </div>
+
+                        </div>
+                        <div class="oe_login_buttons">
+                            <button type="submit" name="csrf_token" t-att-value="request.csrf_token()"  class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                 </div>
+            </div>
+        </t>
+    </template>
+    <template id="thank_you_template" name="Thank you">
+        <t t-call="website.layout">
+            <div class='oe_structure'>
+                 <div class="container">
+                    <div class="alert alert-success" role="alert">
+                        Thank You!
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

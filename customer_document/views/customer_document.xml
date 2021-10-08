@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!--List view Customer Document-->
+        <record id="customer_document_tree_view" model="ir.ui.view">
+            <field name="name">customer.document.tree.view</field>
+            <field name="model">customer.document</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="birth_date"/>
+                    <field name="expiry_date"/>
+                    <field name="age"/>
+                    <field name="partner_id" widget="many2one"/>
+                    <field name="state"  decoration-info="state == 'draft'" decoration-success="state == 'approved'"
+                         decoration-danger="state =='expired'" decoration-muted="state =='refused'" widget="badge"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Form view customer document-->
+        <record  id="customer_document_form_view" model="ir.ui.view">
+            <field name="name">customer.document.form.view</field>
+            <field name="model">customer.document</field>
+            <field name="arch" type="xml">
+                <form string="Customer Document">
+                    <header>
+                        <button name="action_approved" string="Approve" class="oe_highlight" type="object" states="draft"/>
+                        <button name="action_refused" string="Refuse" class="oe_highlight"  type="object" states="draft,approved"/>
+                        <button name="action_draft" string="Draft" class="oe_highlight"  type="object" states="refused"/>
+                        <button name="calculate_age" string="Calculate Age" class="oe_highlight"  type="object" />
+                        <field name="state" widget="statusbar" options="{'clickable':0}" statusbar_visible="draft,approved,expired,refused"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" icon="fa-file-text" attrs="{'invisible': [('document_count', '=', 0)]}" >
+                                <field name="document_count" widget="statinfo" string="Documents"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                              <group>
+                                  <field name="partner_id" widget="many2one"/>
+                                  <field name="birth_date"/>
+                                  <field name="expiry_date"/>
+                                  <field name="age"/>
+                              </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!--search view customer document -->
+        <record id="customer_document_search_view" model="ir.ui.view">
+        <field name="model">customer.document</field>
+        <field name="arch" type="xml">
+	        <search string="name">
+                <field name="name"/>
+                <filter name="Age" domain="[('age','=', 22)]"/>
+                <group expand="1" string="Group By">
+                    <filter name="age" string="Age" context="{'group_by':'age'}"/>
+                </group>
+	        </search>
+        </field>
+        </record>
+        
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="customer_document_action">
+            <field name="name">Customer Document</field>
+            <field name="res_model">customer.document</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                Create a new document, the first step of a new document!
+                </p>
+            </field>
+        </record>
+    
+        <!-- Top menu item -->
+        <menuitem name="Customer Document" id="customer_document_menu_root"/>
+    
+        <!-- menu categories -->
+        <menuitem name="Document" id="document_menu" parent="customer_document_menu_root"
+          action="customer_document_action"/>
+    </data>
+</odoo>

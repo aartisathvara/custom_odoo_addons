@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Sequences for hr referral -->
+        <record id="seq_hr_referral" model="ir.sequence">
+            <field name="name">Hr Referral</field>
+            <field name="code">hr.referral.application</field>
+            <field name="prefix">HR</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</odoo>

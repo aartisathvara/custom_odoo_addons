@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="portal_my_home_students" customize_show="True" inherit_id="portal.portal_my_home" priority="1">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">students</t>
+                <t t-set="url" t-value="'/students'"/>
+                <t t-set="placeholder_count" t-value="'students_count'"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Teachers</t>
+                <t t-set="url" t-value="'/teachers'"/>
+                <t t-set="placeholder_count" t-value="'teachers_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+
+    <template id="teachers_homepage_template" name="Teachers Homepage">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Teachers</t>
+            </t>
+            <t t-if="teachers" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Name</th>
+                        <th>Subject</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <t t-foreach="teachers" t-as="teachers">
+                    <tr>
+                        <td ><a t-att-href="teachers.get_portal_url()"><span t-esc="teachers.t_name"/></a></td>
+                        <td><span t-esc="teachers.t_subject"/></td>
+                        <td><span t-esc="teachers.t_email"/></td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="teachers_detail_view" name="partner view" >
+        <t t-call="website.layout">
+            <img t-if="teachers.photo"
+                t-attf-src="/web/image/teachers.profile/#{teachers.id}/photo"
+             width="70" height="80"/>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <td><t t-esc="teachers.t_name"/></td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td><t t-esc="teachers.t_email"/></td>
+                    </tr>
+                    <tr>
+                        <th>Subject</th>
+                        <td><t t-esc="teachers.t_subject"/></td>
+                    </tr>
+                    <tr>
+                        <th>Experience</th>
+                        <td><t t-esc="teachers.t_experience"/></td>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <td><t t-esc="teachers.t_gender"/></td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td><t t-esc="teachers.t_address"/></td>
+                    </tr>
+                </thead>
+            </table>
+        </t>
+    </template>
+
+
+    <!-- <template id="students_homepage_template" name="Students Homepage">
+        <t t-call="website.layout">
+            <t t-set="additional_title">Students</t>
+            <div id="wrap">
+            <div class="oe_structure oe_empty"/> 
+                <h1 style="background-color: blue; color:white;">Students Info..............</h1>
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                    <thead>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="orders" t-as="students">
+                            <td><t t-esc="students.name"/></td>
+                            <td><t t-esc="students.phone"/></td>
+                            <td><t t-esc="students.email"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template> -->
+<!--     <template id="students_homepage_template" name="Students Homepage">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Students Info..............</t>
+            </t>
+            
+            <t t-if="students" t-call="portal.portal_table"> 
+                <thead>
+                    <tr class="active">
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>  
+                    </tr>    
+                </thead>   
+                <t t-foreach="orders" t-as="students"> 
+                    <tr>
+                        <td ><a t-att-href="students.get_portal_url()"><span t-esc="students.name"/></a></td>
+                        <td><span t-esc="students.phone"/></td>
+                        <td><span t-esc="students.email"/></td>
+                    </tr> 
+                </t>
+            </t>
+        </t>
+    </template>
+ -->
+    <template id="students_homepage_template" name="Students Homepage">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Students</t>
+            </t>
+            <t t-if="orders" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <t t-foreach="orders" t-as="students">
+                    <tr>
+                        <td ><a t-att-href="students.get_portal_url()"><span t-esc="students.name"/></a></td>
+                        <td><span t-esc="students.phone"/></td>
+                        <td><span t-esc="students.email"/></td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- <template id="student_portal_content" name="Student Portal Content" >
+        <div id="introduction" >
+            <h2 class="my-0">
+                <h1>Hello kush</h1>
+            </h2>
+        </div>
+    </template> -->
+
+    <template id="student_portal_content" name="Students record template" inherit_id="portal.portal_sidebar" primary="True">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <div class="row mt16 o_portal_sale_sidebar">
+                <!-- Sidebar -->
+                <t t-call="portal.portal_record_sidebar">
+                    <t t-set="classes" t-value="'col-lg-auto d-print-none'"/>
+                    <t t-set="entries">
+                        <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">
+                            <div id="introduction" t-attf-class="pb-2 pt-3 #{'card-header bg-white' if report_type == 'html' else ''}">
+                                <h2 class="my-0">
+                                    <strong><em t-esc="students_profile.name" style="color:green;"/></strong>
+                                </h2>
+                            </div>
+                            <li class="list-group-item flex-grow-1">
+                                <div class="o_download_pdf btn-toolbar flex-sm-nowrap">
+                                    <div class="btn-group flex-grow-1 mr-1 mb-1">
+                                        <a style="background-color: #FF1493; border: none; color: white; text-align: center; padding: 15px 32px; text-decoration: none; display: inline-block;font-size: 16px;border-radius: 4px;" t-att-href="students_profile.get_portal_url(report_type='pdf', download=True)" title="Download"><i class="fa fa-download"/> Download</a>
+                                    </div>
+                                    <div class="btn-group flex-grow-1 mb-1">
+                                        <a style="background-color: #FF1493; border: none; color: white; text-align: center; padding: 15px 32px; text-decoration: none; display: inline-block;font-size: 16px;border-radius: 4px;" t-att-href="students_profile.get_portal_url(report_type='pdf')" id="print_invoice_report" title="Print" target="_blank"><i class="fa fa-print"/> Print</a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li t-if="students_profile.user_id" class="list-group-item flex-grow-1">
+                                <div class="small mb-1"><strong class="text-muted">Techer</strong></div>
+                                <div class="row flex-nowrap">
+                                    <div class="col flex-grow-0 pr-2">
+                                        <img class="rounded-circle mr4 float-left o_portal_contact_img" t-if="students_profile.user_id.image_1024" src="/students/static/src/img/pi.png" alt="Contact"/>
+                                        <img class="rounded-circle mr4 float-left o_portal_contact_img" t-if="not students_profile.user_id.image_1024" src="/students/static/src/img/pi.png" alt="Contact"/>
+                                    </div>
+                                    <div class="col pl-0" style="min-width: 150px">
+                                        <span t-field="students_profile.user_id" t-options='{"widget": "contact", "fields": ["name", "phone"], "no_marker": True}'/>
+                                        <a href="#discussion" class="small"><i class="fa fa-comment"></i> Send message</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </t>
+                </t>
+
+                <!-- Page -->
+                <div id="student_content" class="col-12 col-lg justify-content-end">
+                   <div t-attf-class="card #{'pb-5' if report_type == 'html' else ''}" id="portal_studen_content" style="background-color:#deffff;">
+                        <div>
+                            <h2 class="my-0">
+                                <p>Student Record{<em t-esc="students_profile.name" style="color:#FF1493;"/>}</p>
+                            </h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <address t-field="students_profile.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                            </div>
+                        </div>
+
+                        <table t-att-data-order-id="students_profile.id" t-att-data-token="students_profile.access_token" class="table table-sm" id="student_record_table">
+                            <p><strong>Name - </strong><em t-esc="students_profile.name" style="color:#FF1493;"/></p>
+                            <p><strong>Phone Number - </strong><em t-esc="students_profile.phone" style="color:#FF1493;"/></p>
+                            <p><strong>Email - </strong><em t-esc="students_profile.email" style="color:#FF1493;"/></p>
+                            <!-- <thead class="bg-100">
+                                <tr>
+                                    <th class="text-left">Name</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <tr>
+                                    <td>
+                                        <t t-esc="students_profile.name"/>
+                                    </td> 
+                                </tr>
+                            </tbody> -->
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id='portal_my_details_inherit' name="Add field" inherit_id='portal.portal_my_details'>
+        <xpath expr="//div[@class='clearfix']" position="after">
+            <div t-attf-class="form-group #{error.get('new_fieldnew_fieldnew_field') and 'o_has_error' or ''} col-xl-6">
+                <label class="col-form-label" for="new_fieldnew_field">new field</label>
+                <input type="text" name="new_field" t-attf-class="form-control #{error.get('new_field') and 'is-invalid' or ''}" t-att-value="new_field or partner.new_field" />
+            </div>
+        </xpath>
+    </template>  
+
+    <template id='inherit_newfiled_in_sale' name="Product Address" inherit_id='sale.sale_order_portal_content'>
+        <xpath expr="//table[@id='sales_order_table']/thead/tr/th[1]" position="after">
+            <th name="product_address">Product Address</th>
+        </xpath>
+    </template>            
+
+    <template id="student_record_form">
+        <t t-call="portal.portal_layout">
+            <t t-set="additional_title">Contact Details</t>
+            <form action="/students" method="post">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div class="form-group">
+                    <div class="row">
+                        <table style="width: 100%;">
+                            <tr>
+                                <th style="color:green;"><h1><strong>Choose Stage:</strong></h1></th>
+                                <td>
+                                    <select name="state" id="stages" >
+                                        <option value="all">All</option>
+                                        <t t-foreach="state" t-as="v">
+                                            <option t-att-value="v" style="background-color: yellow;">
+                                                <t t-esc="v_value"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </td>
+                                <th style="color:green;"><h1><strong>Teachers name:</strong></h1></th>
+                                <td>
+                                    <select name="student_teacher" id="teachers">
+                                        <t t-foreach="student_teacher" t-as="tea">
+                                            <option t-att-value="tea.id" style="background-color: yellow;">
+                                                <t t-esc="tea.t_name"/>
+                                            </option>
+                                        </t>
+                                    </select>    
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-primary"/>
+            </form>
+        </t>
+    </template> 
+
+   <template id="order_record_form">
+        <t t-call="portal.portal_layout">
+            <form action="/order_info" method="post">
+                <div class="row o_portal_details">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1>Sales Orders</h1>
+                            </div>
+                        </div>
+                        <hr></hr>
+                        <div class="row" t-attf-class="form-group col-xl-6">
+                            <label class="col-form-label">Start Date</label>
+                            <input type="date" name="start_date" t-att-value="st"/>
+                        </div>
+
+                        <div class="row" t-attf-class="form-group col-xl-6">
+                            <label class="col-form-label">End Date</label>
+                            <input type="date" name="end_date" t-att-value="en"></input>
+                        </div>
+
+                        <div t-attf-class="form-group col-xl-6">
+                            <label class="col-form-label">Status</label>
+                            <select name="state" class="form-control col-12" id="student_stage">
+                                <option value="all">All</option>
+                                <t t-foreach="state" t-as="st">
+                                    <option t-att-value="st">
+                                        <t t-esc="st_value"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+
+                        <div class="clearfix">
+                            <button type="submit" class="btn btn-success" name="csrf_token" t-att-value="request.csrf_token()">
+                                Search
+                                <span class="fa fa-long-arrow-right" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <t t-if="sale_order">
+                        <br></br>
+                        <div>
+                            <h1>List Sales Orders</h1>
+                        </div>
+                        <hr></hr>
+                        <t t-foreach="sale_order" t-as="order">
+                            <h5><strong>Name - </strong><span><t t-esc="order.name"/></span></h5>
+                            <h5><strong>Address - </strong><span><t t-esc="order.partner_id.street+''+''+order.partner_id.city+''+order.partner_id.state_id.name or ''+''+order.order.partner_id.country_id.name or ''"/></span></h5>
+                            <h5><strong>Delivery Address - </strong><span><t t-esc="order.partner_shipping_id.street+''+''+order.partner_shipping_id.city+''+order.partner_shipping_id.state_id.name or ''+''+order.partner_shipping_id.country_id.name or ''"/></span></h5>
+                            <h5><strong>Billing Address - </strong><span><t t-esc="order.partner_invoice_id.street+''+''+order.partner_invoice_id.city+''+order.partner_invoice_id.state_id.name or ''+''+order.partner_invoice_id.country_id.name or ''"/></span></h5>
+                            <div>
+                                <h5><strong>Order Lines:</strong></h5>
+                                <t t-call="portal.portal_table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-left">Products</th>
+                                            <th class="text-left">Quantity</th>
+                                            <th class="text-left">Unit Price</th>
+                                            <th class="text-left">Taxes</th>
+                                            <th class="text-left">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <t t-foreach="order.order_line" t-as="line">
+                                        <tr>
+                                            <td><t t-esc="line.product_id.name"/></td>
+                                            <td><t t-esc="line.product_uom_qty"/></td>
+                                            <td><t t-esc="line.price_unit"/></td>
+                                            <td><t t-esc="order.amount_tax"/></td>
+                                            <td><t t-esc="line.price_subtotal"/></td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </div>
+                            <p></p>
+                            <div class="clearfix">
+                                <div class="row">
+                                    <div t-attf-class="ml-auto">
+                                        <table class="table table-sm">
+                                            <tr class="border-black o_subtotal" style="">
+                                                <td><strong>Subtotal</strong></td>
+                                                <td class="text-right">
+                                                    <span t-field="order.amount_untaxed"/>
+                                                </td>
+                                            </tr>
+                                            <tr class="border-black o_total">
+                                                <td><strong>Total</strong></td>
+                                                <td class="text-right">
+                                                    <span t-field="order.amount_total"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5><strong>Sales Person - </strong><span><t t-esc="order.user_id.name"/></span></h5>
+                            <hr style="height:5px"></hr>
+                        </t>
+                    </t>
+                </div>
+            </form>
+        </t>
+    </template>
+
+<!--     <template id="order_record_form">
+        <t t-call="portal.portal_layout">
+            <t t-set="additional_title">Order Details</t>
+            <form action="/order_info" method="post">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div class="form-group">
+                    <div class="row">
+                        <table>
+                            <tr>
+                                <th><strong>Start Date:</strong></th>
+                                <td><input type="date" name="start_date" t-att-value="st"/></td>
+                            </tr>
+                            <tr>
+                                <th ><strong>End Date:</strong></th>
+                                <td><input type="date" name="end_date" t-att-value="en"></input></td>
+                            </tr>
+                            <tr>
+                                <th ><strong>Choose Stage:</strong></th>
+                                <td t-att-value="sta">
+                                    <select name="state" id="stages">
+                                        <option value="all">All</option>
+                                        <t t-foreach="state" t-as="v">
+                                            <option t-att-value="v">
+                                                <t t-esc="v_value"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-primary"/>
+            </form>
+
+            <div>
+                <style>
+                    table, th, td {
+                    border: 1px solid white;
+                    border-collapse: collapse;
+                    }
+                </style>
+                <t t-if="sale_order">
+                    <t t-foreach="sale_order" t-as="sl">
+                        <table t-call="portal.portal_table">
+                            <tr>
+                                <th >Name -</th>
+                                <td><t t-esc="sl.partner_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <th>Customer Full Address -</th>
+                                <td><t t-esc="sl.partner_id.name+','+sl.partner_id.street+','+sl.partner_id.city+','+sl.partner_id.state_id.name+','+sl.partner_id.zip+','+sl.partner_id.country_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <th style="width:10%">Invoice Address -</th>
+                                <td><t t-esc="sl.partner_invoice_id.display_name+ ',' +sl.partner_invoice_id.name+ ',' +sl.partner_invoice_id.street+ ','+sl.partner_invoice_id.city+','+sl.partner_invoice_id.state_id.name+','+sl.partner_invoice_id.zip+','+sl.partner_invoice_id.country_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <th>Delivery Address -</th>
+                                <td><t t-esc="sl.partner_shipping_id.display_name + ',' +sl.partner_shipping_id.name+ ',' +sl.partner_shipping_id.street+ ','+sl.partner_shipping_id.city+','+sl.partner_shipping_id.state_id.name+','+sl.partner_shipping_id.zip+','+sl.partner_shipping_id.country_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <th>Order Lines:</th>
+                            </tr>
+                            <table t-call="portal.portal_table">
+                                <thead>
+                                    <tr>
+                                        <th>Products</th>
+                                        <th>Quntity</th>
+                                        <th>unit price</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="sl.order_line" t-as="ol">
+                                        <td><t t-esc="ol.product_id.name"/></td>
+                                        <td><t t-esc="ol.product_uom_qty"/></td>
+                                        <td><t t-esc="ol.price_unit"/></td>
+                                        <td><t t-esc="ol.price_subtotal"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>  
+                        </table>    
+                    </t>
+                </t>
+            </div>        
+        </t>
+
+    </template>  -->  
+
+    <template id="sale_order_detail_view" name="partner view" >
+        <t t-call="portal.portal_layout">
+            <t t-if="not sale_order">
+                <p>There are currently no orders for your account.</p>
+            </t>
+            <t t-else="">
+                <h3 style="background-color:white;">List Sales Orders</h3>
+                <hr></hr>
+            </t>
+            <style>
+                table, th, td {
+                border: 1px solid white;
+                border-collapse: collapse;
+                }
+            </style>
+            <t t-foreach="sale_order" t-as="sl">
+                <table t-call="portal.portal_table">
+                    <tr>
+                        <th >Name -</th>
+                        <td><t t-esc="sl.partner_id.name"/></td>
+                    </tr>
+                    <tr>
+                        <th>Customer Full Address -</th>
+                        <td><t t-esc="sl.partner_id.name+','+sl.partner_id.street+','+sl.partner_id.city+','+sl.partner_id.state_id.name+','+sl.partner_id.zip+','+sl.partner_id.country_id.name"/></td>
+                    </tr>
+                    <tr>
+                        <th style="width:10%">Invoice Address -</th>
+                        <td><t t-esc="sl.partner_invoice_id.display_name+ ',' +sl.partner_invoice_id.name+ ',' +sl.partner_invoice_id.street+ ','+sl.partner_invoice_id.city+','+sl.partner_invoice_id.state_id.name+','+sl.partner_invoice_id.zip+','+sl.partner_invoice_id.country_id.name"/></td>
+                    </tr>
+                    <tr>
+                        <th>Delivery Address -</th>
+                        <td><t t-esc="sl.partner_shipping_id.display_name + ',' +sl.partner_shipping_id.name+ ',' +sl.partner_shipping_id.street+ ','+sl.partner_shipping_id.city+','+sl.partner_shipping_id.state_id.name+','+sl.partner_shipping_id.zip+','+sl.partner_shipping_id.country_id.name"/></td>
+                    </tr>
+                    <tr>
+                        <th>Order Lines:</th>
+                    </tr>
+                    <table t-call="portal.portal_table">
+                        <thead>
+                            <tr>
+                                <th>Products</th>
+                                <th>Quntity</th>
+                                <th>unit price</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="sl.order_line" t-as="ol">
+                                <td><t t-esc="ol.product_id.name"/></td>
+                                <td><t t-esc="ol.product_uom_qty"/></td>
+                                <td><t t-esc="ol.price_unit"/></td>
+                                <td><t t-esc="ol.price_subtotal"/></td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <th>Sub</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Taxes</th>
+                            <td></td>
+                        </tr>
+                    </table>  
+                </table>    
+            </t>
+        </t>
+    </template>
+
+</odoo>

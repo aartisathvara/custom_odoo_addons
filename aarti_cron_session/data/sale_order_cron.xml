@@ -9,7 +9,7 @@
             <field name='interval_number'>1</field>
             <field name='interval_type'>days</field>
             <field name="numbercall">1</field>
-<!--            <field name="nextcall" eval="pytz.timezone('UTC'').localize((datetime.now().replace(hour=22, minute=0, second=0, microsecond=0) + timedelta(days=1)))"/>-->
+<!--            <field name="nextcall" eval="pytz.timezone('UTC'').localize((datetime.now().replace(hour=22, minute=0, second=0, microsecond=0) + timedelta(days=purchase_append)))"/>-->
             <field name="doall" eval="False"/>
        </record>
     </data>

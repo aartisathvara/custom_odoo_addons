@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="aarti_30-09-2021.list">
+      <field name="name">aarti_30-09-2021 list</field>
+      <field name="model">aarti_30-09-2021.aarti_30-09-2021</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="aarti_30-09-2021.action_window">
+      <field name="name">aarti_30-09-2021 window</field>
+      <field name="res_model">aarti_30-09-2021.aarti_30-09-2021</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="aarti_30-09-2021.action_server">
+      <field name="name">aarti_30-09-2021 server</field>
+      <field name="model_id" ref="model_aarti_30-09-2021_aarti_30-09-2021"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="aarti_30-09-2021" id="aarti_30-09-2021.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="aarti_30-09-2021.menu_1" parent="aarti_30-09-2021.menu_root"/>
+    <menuitem name="Menu 2" id="aarti_30-09-2021.menu_2" parent="aarti_30-09-2021.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="aarti_30-09-2021.menu_1_list" parent="aarti_30-09-2021.menu_1"
+              action="aarti_30-09-2021.action_window"/>
+    <menuitem name="Server to list" id="aarti_30-09-2021" parent="aarti_30-09-2021.menu_2"
+              action="aarti_30-09-2021.action_server"/>
+-->
+  </data>
+</odoo>

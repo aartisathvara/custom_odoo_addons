@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- <template id="portal_my_home_teachers" customize_show="True" inherit_id="portal.portal_my_home" priority="1">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Teachers</t>
+                <t t-set="url" t-value="'/teachers'"/>
+                <t t-set="placeholder_count" t-value="'teachers_count'"/>
+            </t>
+        </xpath>
+    </template> -->
+    
+</odoo>

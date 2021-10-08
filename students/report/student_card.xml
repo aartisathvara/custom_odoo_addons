@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo >
+
+    <template id="student_card" >
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout" >
+                    <p style="color:pink;"><img src="/students/static/src/img/pi.png" alt="The Pi logo" width="100" height="100" style="height:auto;display:block; padding:0;"></img><strong>THE PI NEWS</strong></p>
+                    <br></br>
+                    <br></br>
+                    <hr></hr>
+                    <table class="table table-sm o_main_table">
+                        <thead>
+                            <tr style="background-color:green; color:white;">
+                                <th name="name" class="text-center">NAME</th>
+                                <th name="phone" class="text-center">PHONE</th>
+                                <th name="age" class="text-center">AGE</th>
+                                <th name="birthday" class="text-center">BIRTHDAY</th>
+                                <th name="gender" class="text-center">GENDER</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="saleteam _tbody">
+                            <t >
+                                <tr t-att-class="o_line_section">
+                                    <td name="name" class="text-center"><span t-field="doc.name" /></td>
+                                    <td name="phone" class="text-center"><span t-field="doc.phone" /></td>
+                                    <td name="age" class="text-center"><span t-field="doc.age"/></td>
+                                    <td name="birthday" class="text-center"><span t-field="doc.birthday"/></td>
+                                    <td name="gender" class="text-center"><span t-field="doc.gender"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>

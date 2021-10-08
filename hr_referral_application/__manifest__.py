@@ -1,0 +1,21 @@
+{
+    "name": "Hr Referral Application",
+    "summary": """Hr Referral Application""",
+    "description": """Hr Referral Application""",
+    "author": "Aarti Sathvara",
+    "website": "http://www.yourcompany.com",
+    "category": "hr",
+    "version": "14.0.1.0.0",
+    "depends": ["base", "hr_recruitment","website"],
+    "data": [
+        "security/ir.model.access.csv",
+        "data/ir_sequence_data.xml",
+        "data/referral_program_menu.xml",
+        "views/hr_referral_application.xml",
+        "views/hr_referral_template.xml",
+    ],
+    "installable": True,
+    "auto_install": False,
+    "application": True,
+    "sequence": 1,
+}

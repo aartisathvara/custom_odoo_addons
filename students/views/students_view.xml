@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ADD ACTION BUTTON -->
+
+        <!-- <record id = "action_student_button" model="ir.actions.act_window">
+            <field name="name">Sendprint</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">students.profile</field>
+            <field name="domain">[]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="students.student_card_emil_template"/>
+            <field name="binding_model_id" ref="model_students_profile"/>
+        </record>    -->
+
+        <!-- <record id="action_student_button" model="ir.actions.act_window">
+               <field name="name">Send &amp; print</field>
+               <field name="res_model">students.profile</field>
+               <field name="view_mode">form</field>
+               <field name="target">new</field>
+               <field name="context" eval="{'default_template_id':ref('students.student_card_emil_template')}"/>
+               <field name="binding_model_id" ref="model_students_profile"/>
+               <field name="binding_view_types">list</field>
+        </record> -->
+
+        <!-- explicit list view definition -->
+
+        <record id="students_tree" model="ir.ui.view">
+            <field name="name">Students.tree</field>
+            <field name="model">students.profile</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="phone" />
+                    <field name="email"/>
+                    <field name="age" widget="badge" />
+                    <field name="result" />
+                    <field name="classes" />
+                    <field name="address" />
+                    <field name="birthday" optional="hide"/>
+                    <field name="joiningdate" optional="hide"/>
+                    <field name="gender" optional="hide"/>
+                    <field name="marksheet" optional="hide"/>
+                    <field name="photo" optional="hide"/>
+                    <field name="description" optional="hide"/>
+                    <!-- <field name="student_list"/> -->
+                    <field name="student_school" optional="hide"/>
+                    <field name="sc_type" optional="hide"/>
+                    <field name="school_details" optional="hide"/>
+                    <field name="student_teacher" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="students_form" model="ir.ui.view">
+            <field name="name">Students.form</field>
+            <field name="model">students.profile</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_send_card" string="Send By Mail" class="btn-primary" type="object" />
+                        <button id="button_method" name="action_method" string="method" class="btn-primary" type="object" />
+                        <button id="button_confirm" name="action_confirm" string="confirm" class="btn-primary" state="draft" type="object" />
+                        <button id="button_done" name="action_done" string="done" class="btn-primary" states="confirmed" type="object" />
+                        <button id="button_draft" name="action_draft" string="draft" class="btn-primary" states="cancel" type="object" groups="students.group_professor_user"/>
+                        <button id="button_cancel" name="action_cancel" string="cancel" states="draft,confirmed,done" type="object" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done,method"/> <!-- options="{'clickable' : '1'}" -->
+                    </header>
+                    <sheet>   
+                        <div name="button_box" class="oe_button_box" position="inside">
+                            <button class="oe_stat_button" type="object" string="Datetime" name="datetime" icon="fa-calendar">
+                                <field name="total_entry"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" widget="char_emojis" default_focus="1" placeholder="Enter Name"/>
+                            </h1>
+                        </div>
+                        <hr></hr>
+                        <group string= "Student Info">
+                            <group>
+                                <field name="phone" widget="phone"/>
+                                <field name="email"/>
+                                <field name="age" />
+                                <field name="result"/>
+                                <field name="classes" />
+                                <field name="vedor_select"/>
+                                <field name="partner_id"/>
+                            </group>
+                            <group>
+                                <field name="address" widget="text_emojis"/>
+                                <field name="birthday"/>
+                                <field name="joiningdate"/>
+                                <field name="gender" widget="radio" options="{'horizontal': true}" />
+                                <field name="school_details"/>
+                            </group>
+                        </group>
+                        <group>    
+                            <field name="marksheet"/>
+                            <field name="photo" widget="image"/>
+                            <field name="description"/>
+                            <field name="student_school"/>
+                            <!-- <field name="student_list"/> -->
+                        </group>
+                        <notebook>
+                            <page string="School Note">
+                                <group>
+                                    <separator string="School Note"/>
+                                    <field name="student_school"/>
+                                    <field name="sc_type"/>
+                                </group>
+                            </page>
+                            <page string="Teacher Note">
+                                <group>
+                                    <separator string="Teacher Note"/>
+                                    <field name="student_teacher"/>
+                                </group>
+                            </page>
+                            <page string="Students Datetime Info">
+                                <group>
+                                    <separator string="Students Datetime Info"/>
+                                    <field name="students_datetime" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="students_profile_kanban" model="ir.ui.view">
+            <field name="name">students.profile.kanban</field>
+            <field name="model">students.profile</field>
+            <field name="type">kanban</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="phone"/>
+                    <field name="gender"/>
+                    <field name="photo"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_students_profile_kanban">
+                                <t t-if="record.photo.raw_value">
+                                    <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('students.profile','photo',record.id.raw_value)}')"/>
+                                </t>
+                                <t t-else="">
+                                    <img class="o_kanban_image" alt="Students" t-att-src="'/base/static/img/avatar_grey.png'"/>
+                                </t>
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title"><field name="name" widget="label_selection"/></strong>
+                                    <ul>
+                                        <strong><li>PHONE: <field name="phone" widget="phone"/></li></strong>
+                                        <strong><li>AGE: <field name="age"/></li></strong>
+                                        <strong><li>BIRTHDAY: <field name="birthday"/></li></strong>
+                                    </ul>
+                                </div>
+                            </div>             
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!-- search view -->
+
+        <record id="students_profile_search" model="ir.ui.view">
+            <field name = "name">students.profile.search</field>
+            <field name = "model">students.profile</field>
+            <field name = "arch" type = "xml">
+                <search string = "Search Student">
+                    <field name = "name"/>
+                    <field name = "gender"/>
+                    <filter string = "Boy" name = "gender" domain = "[('gender','=','boy')]"/>
+                    <filter string = "Girl" name = "gender" domain = "[('gender','=','girl')]"/>
+                    <group expand = "0" string = "Group By">
+                        <filter string = "Result" name = "result" context="{'group_by':'result'}"/>
+                        <filter string = "Joiningdate" name = "joiningdate" context = "{'group_by':'joiningdate'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>    
+
+
+        <!-- inherit contacts     -->
+        
+        <record id="res_partner_inherit" model="ir.ui.view">
+            <field name="name">res.partner.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="vat" position="after">
+                    <field name="em_age"/>
+                </field>
+                <field name="em_age" position="after">
+                    <field name="new_field"/>
+                </field>
+                <div name="button_box" position="inside">
+                    <button class="oe_stat_button" type="object" string="vertical" name="get_vehicles" icon="fa-car">
+                    </button>
+                </div>
+            </field>
+        </record>
+
+        <record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='name']" position="after">
+                    <field name="product_address"/>
+                </xpath>
+
+                <!-- <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="abc"/>
+                </xpath> -->
+                <field name="payment_term_id" position="after">
+                    <field name="abc"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+
+        <record id="students_action_window" model="ir.actions.act_window">
+          <field name="name">Students Profile</field>
+          <field name="res_model">students.profile</field>
+          <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+
+        <!-- Top menu item -->
+
+        <menuitem name="Students"
+            id="menu_school"
+            sequence="40">
+            <menuitem id="students_sub_menu" name="Students" action="students_action_window" sequence="1"/>
+        </menuitem>
+        <!-- <menuitem id="students_root_menu" name="students"/> -->
+    <!--     <menuitem id = "students_sub_menu" parent="students_root_menu" action = "students_action_window"/> -->
+
+    </data>
+</odoo>

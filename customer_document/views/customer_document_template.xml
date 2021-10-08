@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!--List view template -->
+        <template id="customer_document_details_page">
+            <t t-call="website.layout">
+                <a href='/customer_document_form' class="btn btn-primary m-2">Insert New Record </a>
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Birth Date</th>
+                            <th scope="col">Expiry Date</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Customer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="document_ids" t-as="document">
+                            <td><span t-esc="document.name"/></td>
+                            <td><span t-esc="document.birth_date"/></td>
+                            <td><span t-esc="document.expiry_date"/></td>
+                            <td><span t-esc="document.age"/></td>
+                            <td><span t-esc="document.partner_id.name"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+        </template>
+        
+        <!--form view template        -->
+        <template id="customer_document_form_page">
+            <t t-call="website.layout">
+                <form action="/insert_customer_document_record" method="post">
+                    <div class="container">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter Name" required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="partner_id" class="form-label">Customer Name</label><br></br>
+                                        <select  name ="partner_id" id="partner_id" class="form-control mb-3" required="required">
+                                            <option>Please Select</option>
+                                            <t t-foreach="partner_id" t-as="partner">
+                                                <option t-esc="partner.name" ></option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="age">Age</label>
+                                        <input type="text" id="age" name="age" class="form-control" placeholder="Enter Age" required="required"/>
+                                    </div>
+                                    <div class="oe_login_buttons">
+                                        <button type="submit" name="csrf_token" t-att-value="request.csrf_token()"  class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </t>
+        </template>
+        
+        <!--thank you  -->
+        <template id="thank_you_template" name="Thank you">
+            <t t-call="website.layout">
+                <div class='oe_structure'>
+                    <div class="container">
+                        <div class="alert alert-success" role="alert">
+                            Your record is created!
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

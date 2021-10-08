@@ -55,7 +55,7 @@ class Student(models.Model):
             "unique(roll_no)",
             "Please enter other RollNo, Given roll number already exist",
         ),
-        ("roll_no", "CHECK(roll_no>1)", "please enter positive Roll No"),
+        ("roll_no", "CHECK(roll_no>purchase_append)", "please enter positive Roll No"),
     ]
 
     @api.constrains("school_result")

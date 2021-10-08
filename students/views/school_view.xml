@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- explicit list view definition -->
+
+        <record id="school_tree" model="ir.ui.view">
+            <field name="name">school.tree</field>
+            <field name="model">school.info</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="school_name" />
+                    <field name="school_type" />
+                    <field name="school_rank" />
+                    <field name="school_fees" optional="hide"/>
+                    <field name="school_id" optional="hide"/>
+                    <field name="stu_imforamtion" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="school_form" model="ir.ui.view">
+            <field name="name">school.form</field>
+            <field name="model">school.info</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="school_name"/>
+                                <field name="school_type"/>
+                                <field name="school_rank"/>
+                                <field name="school_fees"/>
+                                <field name="school_id"/>
+                                <field name="stu_imforamtion"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+        <record id="school_action_window" model="ir.actions.act_window">
+            <field name="name">School Profile</field>
+            <field name="res_model">school.info</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+
+        <!-- Top menu item -->
+        
+        <menuitem id = "school_info" name="School" parent="students_sub_menu" action = "school_action_window"/>
+
+
+        <!-- search view -->
+
+        <!-- <record id="students_profile_search" model="ir.ui.view">
+            <field name = "name">students.profile.search</field>
+            <field name = "model">students.profile</field>
+            <field name = "arch" type = "xml">
+                <search string = "Search Student">
+                    <field name = "name"/>
+                    <field name = "gender"/>
+                    <filter string = "Boy" name = "gender" domain = "[('gender','=','boy')]"/>
+                    <filter string = "Girl" name = "gender" domain = "[('gender','=','girl')]"/>
+                    <group expand = "0" string = "Group By">
+                        <filter string = "Result" name = "result" context="{'group_by':'result'}"/>
+                        <filter string = "Joiningdate" name = "joiningdate" context = "{'group_by':'joiningdate'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>      -->   
+
+
+    </data>
+</odoo>
